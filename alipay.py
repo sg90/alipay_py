@@ -9,9 +9,9 @@ import alipay_core
 
 
 def make_payment_url(out_trade_no, subject, total_fee, service_type, body=None, show_url=None, timeout=None):
-    """
+    '''
         构造支付请求参数
-    """
+    '''
     order_info = {'partner': '%s' % (alipay_config.partner_id),
                   'service': '%s' % service_type,
                   '_input_charset': 'utf-8',
@@ -44,15 +44,15 @@ def make_payment_url(out_trade_no, subject, total_fee, service_type, body=None, 
 
 
 class MakePaymentInfo(tornado.web.RequestHandler):
-    """
+    '''
     构造一个支付请求URL
-    """
+    '''
 
     @tornado.gen.coroutine
     def get(self, service_type, order_id):
-        """
+        '''
         这里是客户端请求服务端来获取提交给支付宝的支付请求， 因为私钥放在客户端来签名的话，可能会遭遇破解，所以构造了这个服务端用来签名的方法
-        """
+        '''
         self.set_status(200)
         self.set_header('Content-Type', 'application/json; charset=UTF-8')
 
@@ -75,9 +75,9 @@ class MakePaymentInfo(tornado.web.RequestHandler):
 
 
 class PaymentCallback(tornado.web.RequestHandler):
-    """
+    '''
     阿里支付回调
-    """
+    '''
 
     @tornado.gen.coroutine
     def get(self):
@@ -100,7 +100,7 @@ class PaymentCallback(tornado.web.RequestHandler):
             return
 
         #这里是去访问支付宝来验证订单是否正常
-        res = alipay_core.verify_from_gateway(params['notify_id'])
+        res = yield alipay_core.verify_from_gateway(params['notify_id'])
         
         if res == False:
             self.write('fail')
@@ -113,9 +113,9 @@ class PaymentCallback(tornado.web.RequestHandler):
         alipay_order = params['trade_no']  #支付宝的订单号码
         total_fee = params['total_fee']  #支付总额
 
-        """
+        '''
         下面是处理付款完成的逻辑
-        """
+        '''
         print trade_status
         if trade_status == 'TRADE_SUCCESS':  #交易成功
             pass
@@ -138,7 +138,7 @@ def main():
         (r'/alipay/payment_callback', PaymentCallback),
     ])
     settings = {
-        "debug": True,
+        'debug': True,
         'autoreload': True
     }
     httpServer = tornado.httpserver.HTTPServer(application, settings)
