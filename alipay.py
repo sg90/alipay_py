@@ -15,14 +15,17 @@ def make_payment_url(out_trade_no, subject, total_fee, service_type, body=None, 
     order_info = {'partner': '%s' % (alipay_config.partner_id),
                   'service': '%s' % service_type,
                   '_input_charset': 'utf-8',
-                  'notify_url': '%s' % (alipay_config.notify_url),
-                  'return_url': '%s' % (alipay_config.return_url),
                   #业务参数
                   'out_trade_no': '%s' % (out_trade_no),
                   'subject': '%s' % subject,
                   'seller_id': alipay_config.partner_id,
                   'payment_type': '1',
     }
+
+    if alipay_config.notify_url:
+        order_info['notify_url'] = alipay_config.notify_url
+    if alipay_config.return_url:
+        order_info['return_url'] = alipay_config.return_url
 
     if not total_fee or total_fee <= 0.0:
         total_fee = 0.01
