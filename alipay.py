@@ -74,7 +74,8 @@ class MakePaymentInfo(tornado.web.RequestHandler):
             service_type = alipay_config.wap_pay_service
 
         res = make_payment_url(out_trade_no=order_id, subject=order_id, total_fee=total_fee, service_type=service_type, body=body, show_url='http://www.baidu.com')
-        self.write({'status': STATUS_SUCCESS, 'res': res})
+        #self.write({'status': STATUS_SUCCESS, 'res': res})
+        self.write(res)
 
 
 class PaymentCallback(tornado.web.RequestHandler):
@@ -99,14 +100,14 @@ class PaymentCallback(tornado.web.RequestHandler):
         check_res = alipay_core.verify_alipay_request_sign(params)  #验签
         
         if check_res == False:
-            self.write('fail')
+            self.write('verify_alipay_request_sign fail')
             return
 
         #这里是去访问支付宝来验证订单是否正常
         res = yield alipay_core.verify_from_gateway(params['notify_id'])
         
         if res == False:
-            self.write('fail')
+            self.write('verify_from_gateway fail')
             return
 
         if 'trade_status' not in params:

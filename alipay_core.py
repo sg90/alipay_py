@@ -139,13 +139,13 @@ def verify_from_gateway(notify_id):
     client = httpclient.AsyncHTTPClient()
     try:
         res = yield client.fetch(ali_gateway_url)
-        #print res.body
-        if res.body == 'true':
-            raise tornado.gen.Return(True)
     except Exception, e:
         print 'verify_from_gateway error:' + str(e)
     
-    raise tornado.gen.Return(False)
+    if res.body == 'true':
+        raise tornado.gen.Return(True)
+    else:
+        raise tornado.gen.Return(False)
 
 
 if __name__ == '__main__':

@@ -12,7 +12,7 @@ alipay.PaymentCallback: 支付通知的RequestHandler
 
 ## 配置
 alipay_config.py.example中配置项修改。RSA公钥、私钥、支付宝公钥、partner_id、key等。然后，重命名为alipay_config.py即可。
-正式部署后，需要修改notify_url为PaymentCallback对应的URL，注释掉return_url。
+正式部署后，需要修改notify_url为PaymentCallback对应的URL，如果return_url不需要可以置空。
 
 RSA公密钥：
 $ openssl 进入OpenSSL程序
