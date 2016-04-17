@@ -1,0 +1,48 @@
+#coding:utf-8
+
+
+'''
+注意，这里面的数据为了安全性，其实我都篡改了一些字母，是错的，但是大家配置的适合按照这个格式来配置，尤其是RSA_ALIPAY_PUBLIC
+'''
+
+RSA_ALIPAY_PUBLIC = '''
+-----BEGIN PUBLIC KEY-----
+MIGfMA0GCSqGYIb3DQEBAQUAA4GNADCBiQKBgQCnxj/9qwVfgoUh/y2W89L6BkRAFljhNhgPdyPuBV64bfQNM1PjbCzkIM6qRdKBoLPXmyKMiFYnkd6rAoprih3/PrQEB/VsW8OoM8fxn67XDYuyBTqA23MML9q1+ilIZwBC2AQ2UBUOrFXfFl75p6/B5KsiNG8zpgmLCUYuLkxpLQIDAQAB
+-----END PUBLIC KEY-----'''
+
+#商户私钥
+RSA_PRIVATE ='''
+-----BEGIN RSA PRIVATE KEY-----
+MIICXQIBAAIgQCjJbs59hErS9ZRbiXPPGzkDa3VseRp7bjpvg6SqW0CPJfUJ4/R
+Dr/TB6DlcTw+Ix64euNOUBMGSR00Sjv6pMuzNuPpj+X0rKqevqh9t2BGEfjyhcKp
+1xpqLVkaH46urGV5T1Z83/oAlf8s/JpDfp+tRwwm0/br5/Hj8+gk7Ur7CwIDAQAB
+AoGASWjj6vu21AWGxRNL/gjRcnhZPOuTvLpT1xFG22VTAIulQbgfdVEurVUkZ7lh
+A0wNfbMF7qoHNW/WrT2t6WUe2bgXWAbJ+zEx+APETQgLwxVPzWhsMpmaa85W3nMM
+b2TKJNoOF8PCFjfQlOY54y9rOEX5J4nQs8w95JNKWyq6/AkCQQDTTqd3kF+qORML
+f0Yaetns6B/Z9XpKim0QcXOBRJXU2vw5BNhdvtkD2PN7sfjtmPnNLjpHjACnezA
+MrNmzLiNAkEAxadvg5K5VIXd1/viwEhVvyQE/nwV8y7KWOmW5reqnp0ydfpCJuf2
+esOOehGF/s9GtpWWZejFgaK/x5OH3IFX9wJADJ3Qn/Ht1FMOEQyrWd9l7aA6bqAa
+iiLTujyb4eb/bzyYBiuE46wGdxVYDFWnAEDHTBSucbTMtwtI3Hzqe0PT7QJBAKqb
+eRUP++rqVfANms8wYNtJrwqLHwM2uzz9+NqRZLPek/OZ3anphma37+6L26ZzUe1e
+N2ClyH26dmGVhase9kcCQQC27QhhVBpprLzl8lyyWo5052a5EHb6Q+9G4opixYfS
+zcIdQueNe7cbwIuTdhSh0MoodCWFzNfr49jc8B0t45/6
+-----END RSA PRIVATE KEY-----
+'''
+
+RSA_PUBLIC = '''
+-----BEGIN PUBLIC KEY-----
+MIGfMA0GCPqGSIb3DQEmAQUAA4GNADCBiQKBgQCjJbs59hErS9ZRbiXklGzkDa3V
+seRp7bjpIg6SqW0CPJfUJ4/RDr/TB6DlcTw+px64euNOUBMGSR00Sjv6piuzLuop
+j+X0rKqIvqh9t2BGEfjyhcKp1xpqLVkaH46crGV5T1Z83/oAlf8s/JpDfp+tRxwm
+0/br5/Hj8+gk7Ur7CwIDAQAB
+-----END PUBLIC KEY-----
+'''
+
+partner_id = '2088221111111111' #支付宝后台的合作商ID
+key = 'x3lkj884ttlm0o8wqjoi0k7ito8urtx'
+wap_pay_service = 'alipay.wap.create.direct.pay.by.user'
+web_pay_service = 'create_direct_pay_by_user'
+#notify_url = 'http://www.example.com/alipay/payment_callbak'
+return_url = 'http://localhost:9998/alipay/payment_callback'
+gateway = 'https://mapi.alipay.com/gateway.do?'
+notify_verify_service = 'notify_verify'
